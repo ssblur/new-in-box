@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "new_in_box",
+	"version": "${version}",
+	"name": "New In Box",
+	"description": "An uninitialized Unfocused mod",
+	"authors": [ "SSBlur" ],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/ssblur/unfocused-new_in_box"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/new_in_box/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.ssblur.new_in_box.fabric.NewInBoxFabric"
+		],
+		"client": [
+			"com.ssblur.new_in_box.fabric.NewInBoxFabric"
+		]
+	},
+	"mixins": [
+		"new_in_box.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${fabric_loader_version}",
+		"minecraft": ">=${minecraft_version}",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*",
+		"unfocused": ">=${unfocused_version}"
+	},
+	"suggests": {}
+}
