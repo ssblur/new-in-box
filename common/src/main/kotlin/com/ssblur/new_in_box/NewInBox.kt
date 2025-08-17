@@ -32,6 +32,9 @@ object NewInBox : ModInitializer("new_in_box") {
         it.persistent(ResourceLocation.CODEC).build()
     }
 
+    // Enable demo mode to only allow entities with Figurine to be captured
+    val DEMO_MODE = config.registerBoolean("demo_mode", false)
+
     fun init() {
         LOGGER.info("New In Box loaded...")
     }

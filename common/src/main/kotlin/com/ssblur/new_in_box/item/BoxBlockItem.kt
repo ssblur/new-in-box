@@ -31,7 +31,15 @@ class BoxBlockItem(block: Block, properties: Properties) : BlockItem(block, prop
   ): InteractionResult? {
     if(itemStack[NewInBox.BOX_ENTITY] == null && livingEntity is Mob) {
       if(livingEntity.health > 10) {
-        player.displayClientMessage(Component.translatable("extra.new_in_box.too_much_health"), false)
+        if(!player.level().isClientSide)
+          player.displayClientMessage(Component.translatable("extra.new_in_box.too_much_health"), false)
+        player.cooldowns.addCooldown(itemStack, 10)
+        return InteractionResult.FAIL
+      }
+      if(NewInBox.DEMO_MODE() && !livingEntity.hasEffect(NewInBox.FIGURINE_EFFECT.ref())) {
+        if(!player.level().isClientSide)
+          player.displayClientMessage(Component.translatable("extra.new_in_box.demo_mode"), false)
+        player.cooldowns.addCooldown(itemStack, 10)
         return InteractionResult.FAIL
       }
       val output = TagValueOutput.createWithoutContext(ProblemReporter.DISCARDING)
