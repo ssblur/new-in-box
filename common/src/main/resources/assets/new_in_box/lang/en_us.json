@@ -1,3 +1,5 @@
 {
-
+  "block.new_in_box.box": "Box",
+  "item.new_in_box.box": "Box",
+  "effect.new_in_box.figurine": "Figurine"
 }
