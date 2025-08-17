@@ -1,5 +1,7 @@
 {
   "block.new_in_box.box": "Box",
   "item.new_in_box.box": "Box",
-  "effect.new_in_box.figurine": "Figurine"
+  "item.new_in_box.box_with": "%s in Box",
+  "effect.new_in_box.figurine": "Figurine",
+  "extra.new_in_box.too_much_health": "You can only capture mobs with less than 5 hearts!"
 }
