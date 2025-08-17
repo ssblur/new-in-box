@@ -45,11 +45,11 @@ jobs:
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          curse-project-id: "1329261"
-          curse-token: "${{ secrets.CURSEFORGE_TOKEN }}"
-
-          modrinth-project-id: "new-in-box!"
-          modrinth-token: "${{ secrets.MODRINTH_TOKEN }}"
+#          curse-project-id: "1329261"
+#          curse-token: "${{ secrets.CURSEFORGE_TOKEN }}"
+#
+#          modrinth-project-id: "new-in-box!"
+#          modrinth-token: "${{ secrets.MODRINTH_TOKEN }}"
 
           jar-signing-store: ${{ secrets.JAR_SIGNING_STORE }}
           jar-signing-alias: ${{ secrets.JAR_SIGNING_ALIAS }}
