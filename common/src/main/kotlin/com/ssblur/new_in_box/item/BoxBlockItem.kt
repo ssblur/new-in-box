@@ -67,15 +67,18 @@ class BoxBlockItem(block: Block, properties: Properties) : BlockItem(block, prop
       val entity = type.create(level, EntitySpawnReason.SPAWN_ITEM_USE)
       entity?.let {
         if(entity is LivingEntity) {
+          val target = blockPlaceContext.clickedPos.center
+
           entity.load(input)
           entity.uuid = UUID.randomUUID()
           entity.addEffect(NewInBox.figurine())
-          val target = blockPlaceContext.clickedPos.center
+          entity.addEffect(NewInBox.fireResistance())
           entity.teleportTo(target.x, target.y - 0.45, target.z)
-          entity.yRot = blockPlaceContext.clickedFace.opposite.toYRot()
-          entity.yBodyRot = blockPlaceContext.clickedFace.opposite.toYRot()
+          entity.forceSetRotation(blockPlaceContext.horizontalDirection.opposite.toYRot(), 0.0f)
+
           if(entity is Mob) {
             entity.isNoAi = true
+            entity.setPersistenceRequired()
           }
 
           level.addFreshEntity(entity)

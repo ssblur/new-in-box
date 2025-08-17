@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component
 import net.minecraft.util.ProblemReporter
 import net.minecraft.world.InteractionResult
+import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.Mob
 import net.minecraft.world.entity.item.ItemEntity
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import net.minecraft.world.level.block.state.properties.EnumProperty
 import net.minecraft.world.level.storage.TagValueOutput
 import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.BlockHitResult
@@ -112,11 +114,12 @@ class BoxBlock(properties: Properties) : Block(properties.noOcclusion()) {
     val bounds = AABB.unitCubeFromLowerCorner(blockPos.center.add(-.5))
     levelAccessor.getEntitiesOfClass(Mob::class.java, bounds).forEach {
       it.isNoAi = false
+      it.removeEffect(MobEffects.FIRE_RESISTANCE)
     }
     super.destroy(levelAccessor, blockPos, blockState)
   }
 
   companion object {
-    val FACING = BlockStateProperties.HORIZONTAL_FACING
+    val FACING: EnumProperty<Direction> = BlockStateProperties.HORIZONTAL_FACING
   }
 }

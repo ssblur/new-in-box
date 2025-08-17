@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.chunk.ChunkSectionLayer
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.ExtraCodecs
 import net.minecraft.world.effect.MobEffectInstance
+import net.minecraft.world.effect.MobEffects
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -48,6 +49,17 @@ object NewInBox : ModInitializer("new_in_box") {
     fun figurine() =
         MobEffectInstance(
             FIGURINE_EFFECT.ref(),
+            -1,
+            0,
+            true,
+            false,
+            true,
+            null
+        )
+
+    fun fireResistance() =
+        MobEffectInstance(
+            MobEffects.FIRE_RESISTANCE,
             -1,
             0,
             true,
