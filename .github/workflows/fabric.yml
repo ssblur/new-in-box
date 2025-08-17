@@ -1,0 +1,58 @@
+name: fabric
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    environment: publish
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - id: changelog
+        uses: ssblur/git-changelog-action@v1
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+      - name: Build Fabric
+        run: bash ./gradlew fabric:build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: 'ssblur'
+      - name: Cleanup
+        run: |
+          rm */build/libs/new_in_box-*-dev-shadow.jar
+      - name: Extract Tag Version
+        id: tag
+        run: echo "version=${GITHUB_REF:11}" >> $GITHUB_OUTPUT
+      - name: Deploy
+        uses: ssblur/minecraft-publish@v1
+        with:
+          mod-file: fabric/build/libs/new_in_box-fabric-${{ steps.tag.outputs.version }}.jar
+          version-name: "${{ steps.tag.outputs.version }}-fabric"
+          minecraft-version: |
+            [1.21.8]
+          mod-loader: fabric
+          changelog: ${{ steps.changelog.outputs.changelog }}
+          dependencies: |
+            fabric-api
+            unfocused
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+#          curse-project-id: ""
+#          curse-token: "${{ secrets.CURSEFORGE_TOKEN }}"
+
+          modrinth-project-id: "new-in-box!"
+          modrinth-token: "${{ secrets.MODRINTH_TOKEN }}"
+
+          jar-signing-store: ${{ secrets.JAR_SIGNING_STORE }}
+          jar-signing-alias: ${{ secrets.JAR_SIGNING_ALIAS }}
+          jar-signing-store-pass: ${{ secrets.JAR_SIGNING_STORE_PASS }}
+          jar-signing-key-pass: ${{ secrets.JAR_SIGNING_KEY_PASS }}
