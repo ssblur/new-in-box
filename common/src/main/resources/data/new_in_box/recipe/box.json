@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "GD#",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:paper",
+    "G": "minecraft:glass",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "id": "new_in_box:box",
+    "count": 1
+  }
+}
