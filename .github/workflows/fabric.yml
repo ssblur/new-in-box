@@ -49,7 +49,7 @@ jobs:
 #          curse-project-id: ""
 #          curse-token: "${{ secrets.CURSEFORGE_TOKEN }}"
 
-          modrinth-project-id: "new-in-box!"
+          modrinth-project-id: "newinbox"
           modrinth-token: "${{ secrets.MODRINTH_TOKEN }}"
 
           jar-signing-store: ${{ secrets.JAR_SIGNING_STORE }}
