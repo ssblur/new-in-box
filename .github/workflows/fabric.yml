@@ -46,8 +46,8 @@ jobs:
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-#          curse-project-id: ""
-#          curse-token: "${{ secrets.CURSEFORGE_TOKEN }}"
+          curse-project-id: "1329261"
+          curse-token: "${{ secrets.CURSEFORGE_TOKEN }}"
 
           modrinth-project-id: "newinbox"
           modrinth-token: "${{ secrets.MODRINTH_TOKEN }}"
