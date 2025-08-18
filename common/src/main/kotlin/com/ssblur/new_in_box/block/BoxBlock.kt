@@ -49,10 +49,11 @@ class BoxBlock(properties: Properties) : Block(properties.noOcclusion()) {
     val p = 1.0 / 16.0
     val shape = Shapes.or(
       Shapes.box(p * 2, 0.0, p * 4, p * 14, 1.0, p * 4.25),
-      Shapes.box(p * 2, 0.0, p * 12, p * 14, 1.0, p * 12.25),
+      Shapes.box(p * 2, 0.0, p * 11.75, p * 14, 1.0, p * 12),
       Shapes.box(p * 2, 0.0, p * 4, p * 2.25, 1.0, p * 12),
-      Shapes.box(p * 14, 0.0, p * 4, p * 14.25, 1.0, p * 12),
+      Shapes.box(p * 13.75, 0.0, p * 4, p * 14, 1.0, p * 12),
       Shapes.box(p * 2, p * 15.75, p * 4, p * 14, 1.0, p * 12),
+      Shapes.box(p * 2, p * -0.25, p * 4, p * 14, 0.0, p * 12),
     )
     val shapes = Shapes.rotateHorizontal(shape)
     return when(blockState.getValue(FACING)) {
